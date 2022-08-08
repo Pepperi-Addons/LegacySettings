@@ -1,0 +1,91 @@
+{
+  "AddonUUID": "354c5123-a7d0-4f52-8fce-3cf1ebc95314",
+  "AddonVersion": "9.5.172",
+  "DebugPort": 4500,
+  "WebappBaseUrl": "https://app.sandbox.pepperi.com",
+  "DefaultEditor": "editor",
+  "Endpoints": [
+    "installation.ts",
+    "api.ts"
+  ],
+  "Editors": [
+    "main",
+    "settings_iframe",
+    "src_app_components_settings-iframe_settings-iframe_module_ts",
+    "vendors-node_modules_pepperi-addons_papi-sdk_dist_index_js-node_modules_jwt-decode_lib_index_js",
+    "api"
+  ],
+  "Assets": [
+    "en.json",
+    "en.ngx-lib.json",
+    "he.json"
+  ],
+  "PublishConfig":{
+    "ClientStack": "ng10",
+    "Editors": [
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_profile&uri=distributordetails","Description": "Company Profile"},
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_sync","Description": "Sync Settings"},
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_smtp","Description": "Email Settings"},
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_securitygroups&uri=grid/securitygroups","Description": "Security Groups"},
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_webapp_homebuttons","Description": "App Home Screen"},
+       {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_webapp_mainbutton","Description": "Home Screen Shortcut"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_filters","Description": "Filters"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_imageuploadersetup","Description": "Automated Image Uploader"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_variantdimensions&uri=grid/dimensions/colors","Description": "Variant Dimensions"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_genericlist&uri=genericlist/item","Description": "Item Lists"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_fields","Description": "Fields"},
+       {"ParentPackageName": "Items","PackageName": "editor?view=items_share_email","Description": "Share Email Info"},
+  
+	   
+      {"ParentPackageName": "Data","PackageName": "editor?view=items_manage","Description": "Manage Items"},
+      {"ParentPackageName": "Data","PackageName": "editor?view=catalog_details","Description": "Manage Catalogs"},	
+      {"ParentPackageName": "Data","PackageName": "editor?view=accounts_display","Description": "Manage Accounts"},
+	   
+       {"ParentPackageName": "Catalogs","PackageName": "editor?view=catalogs_manage","Description": "Manage Catalog"},
+       {"ParentPackageName": "Catalogs","PackageName": "editor?view=catalogs_forms","Description": "Edit Form"},
+       {"ParentPackageName": "Catalogs","PackageName": "editor?view=catalogs_views&uri=uicontrols/single/catalog/CatalogSelectionCard","Description": "Catalog Views"},
+       {"ParentPackageName": "Catalogs","PackageName": "editor?view=catalogs_fields&uri=grid/fields/catalogs","Description": "Fields"},	   	        
+       
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_lists","Description": "Account Lists"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_genericlist","Description": "Account Lists(new)"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_views_map","Description": "Map View"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_card&uri=uicontrols/single/account/AccountCard","Description": "Card Layout"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_dashboardlayout&uri=uicontrols/list/account/AccountDashboardLayout","Description": "Account Dashboard Layout"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_search","Description": "Search"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_smartsearch","Description": "Smart Search"},
+       {"ParentPackageName": "Accounts","PackageName": "editor?view=accounts_fields&uri=grid/fields/accounts","Description": "Fields"},	   
+	   
+	   {"ParentPackageName": "Branded App","PackageName": "editor?view=company_branding","Description": "Branding"},
+	   {"ParentPackageName": "Branded App","PackageName": "editor?view=company_webapp_homepage&uri=uicontrols/single/company_profile/WebAppMainBar","Description": "WebApp Main Bar"},
+	     
+       {"ParentPackageName": "Contacts","PackageName": "editor?view=contacts_genericlist&uri=genericlist/contact_person","Description": "Contact Lists"},
+       {"ParentPackageName": "Contacts","PackageName": "editor?view=contacts_types&uri=TypesSettings/contact_person","Description": "Contact Settings"},
+       {"ParentPackageName": "Contacts","PackageName": "editor?view=contacts_fields&uri=grid/fields/contacts","Description": "Fields"},
+       {"ParentPackageName": "Users","PackageName": "editor?view=users_manage","Description": "Manage Users"},
+       {"ParentPackageName": "Users","PackageName": "editor?view=users_roles","Description": "Role Hierarchy"},
+       {"ParentPackageName": "Users","PackageName": "editor?view=users_profiles","Description": "Profiles"},
+       {"ParentPackageName": "Users","PackageName": "editor?view=users_genericlist&uri=genericlist/user","Description": "User Lists"},
+       {"ParentPackageName": "Sales Activities","PackageName": "editor?view=sa_genericlist_activities&uri=genericlist/activity","Description": "Activity Lists"},
+       {"ParentPackageName": "Sales Activities","PackageName": "editor?view=sa_genericlist_transaction_line&uri=genericlist/transaction_line","Description": "Transaction line report"},
+       {"ParentPackageName": "Sales Activities","PackageName": "editor?view=sa_salesdashboard","Description": "Sales Dashboard Settings"},
+	   {"ParentPackageName": "Sales Activities","PackageName": "editor?view=activity_planning_display","Description": "Activity Planning Display Options"},
+       {"ParentPackageName": "Pricing Policy","PackageName": "editor?view=pricing_policy","Description": "Pricing Policy"},
+       {"ParentPackageName": "Pricing Policy","PackageName": "editor?view=pricing_pricelevel&uri=grid/pricelevels/pricelists","Description": "Price Level"},
+       {"ParentPackageName": "ERP Integrarion","PackageName": "editor?view=erp_pluginsettings","Description": "Plugin Settings"},
+       {"ParentPackageName": "ERP Integrarion","PackageName": "editor?view=erp_setup&uri=erpdetails","Description": "Configuration"},
+       {"ParentPackageName": "ERP Integrarion","PackageName": "editor?view=erp_files","Description": "File Upload and Logs"},
+       {"ParentPackageName": "Configuration","PackageName": "editor?view=config_configurationfiles&uri=grid/configurationfiles","Description": "Configuration Files"},
+       {"ParentPackageName": "Configuration","PackageName": "editor?view=config_statuses","Description": "Statuses"},
+       {"ParentPackageName": "Configuration","PackageName": "editor?view=config_translationfiles","Description": "Translation Files"},
+       {"ParentPackageName": "Configuration","PackageName": "editor?view=config_onlineactions","Description": "Online Add-ons"},
+       {"ParentPackageName": "Configuration","PackageName": "editor?view=config_mapdata&uri=grid/mapdatametadata","Description": "User Defined Tables"}
+       ],
+       "Dependencies":
+       {
+        "papi":"9.5.339",
+        "cpapi":"9.5.191",
+        "webapp":"16.55.147"
+        }
+      
+  }
+}
