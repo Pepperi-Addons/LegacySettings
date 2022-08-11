@@ -39,8 +39,19 @@ import jwt from 'jwt-decode';
     browserLang = 'en';
     
 
-    @Input() hostObject;
-    @Input() options;
+    private _hostObject = null;
+    @Input()
+    set hostObject(value: any) {
+      this._hostObject = value;
+
+      if (value) {
+        this.borderTop = value?.borderTop ??  '0';
+        this.start(value);
+      }
+    }
+
+
+    // @Input() options;
     @Output() hostEvents: EventEmitter<any> = new EventEmitter();    
     @ViewChild('settingsIframe', {static: false}) settingsIframe: ElementRef;
     
@@ -93,7 +104,7 @@ import jwt from 'jwt-decode';
 
     ngOnInit(){
         //this.top =  this.options?.top ??  '230';
-        this.borderTop = this.options?.borderTop ??  '0';
+        // this.borderTop = this.options?.borderTop ??  '0';
     }
 
     ngAfterViewInit() {       
@@ -101,31 +112,28 @@ import jwt from 'jwt-decode';
     }
 
     ngOnChanges(changes: SimpleChanges | any) {
-       let options =  changes?.options?.currentValue;
-       if (!options){
-        options =  changes?.options;
-       }
+      //  let options =  changes?.options?.currentValue;
+      //  if (!options){
+      //   options =  changes?.options;
+      //  }
 
 
-       this.start(options);
+      //  this.start(options);
        //this.start(this.options);       
 
     }
 
     start(options){
         //const addonUUID = this.routeParams.snapshot.params.addon_uuid;
-        if (!options?.addon){
-            this.papiClient.addons.installedAddons
-              .get(options?.uuid).then(addon => {
-          //   this.http.getPapiApiCall(`/addons/installed_addons/${this.options?.uuid}`)
-          //         .subscribe(addon =>{
-                      options.addon = addon;
-                      this.init(options);
-                  });
-          }
-          else {
-            this.init(options);
-          }
+        if (!options?.addon) {
+            this.papiClient.addons.installedAddons.get(options?.uuid).then(addon => {
+                options.addon = addon;
+                this.init(options);
+            });
+        }
+        else {
+          this.init(options);
+        }
     }
 
     init(options){

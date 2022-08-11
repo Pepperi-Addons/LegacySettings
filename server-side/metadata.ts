@@ -1,26 +1,19 @@
+import { Relation } from "@pepperi-addons/papi-sdk";
 
-export interface Relation {
-    RelationName: string;
-    AddonUUID: string;
-    Name: string;
-    Description: string;
-    Type: "AddonAPI" | "NgComponent" | "Navigate";
-    [key:string]:string | boolean | number;
-}
-
-
-export function tabsData(tabsKeys: string[]):Relation[] {
+export function tabsData(tabsKeys: string[], addonUUID: string):Relation[] {
     const tabs: Relation[] = tabsKeys.map((key, index) =>{
         return  {
             Name: key,
-            AddonUUID: "354c5123-a7d0-4f52-8fce-3cf1ebc95314",
+            AddonUUID: addonUUID,
             RelationName: "",
             Type: "NgComponent",
             Description: key,
-            SubType: "NG11",
+            SubType: "NG14",
             AddonRelativeURL: 'settings_iframe',
             ComponentName: 'SettingsIframeComponent',
-            ModuleName: 'SettingsIframeModule'
+            ModuleName: 'SettingsIframeModule',
+            ElementsModule: 'WebComponents',
+            ElementName: `settings-iframe-element-${addonUUID}`,
         }});
     return tabs;
 }

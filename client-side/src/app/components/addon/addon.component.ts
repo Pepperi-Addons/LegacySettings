@@ -1,7 +1,7 @@
 import { viewFlagDictionary } from './../../../../../server-side/dictionary';
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { singleSpaPropsSubject } from "src/single-spa/single-spa-props";
+// import { singleSpaPropsSubject } from "src/single-spa/single-spa-props";
 import { Subscription } from "rxjs";
 // import { AddonService } from './addon.service';
 // import { TranslateService } from "@ngx-translate/core";
@@ -50,7 +50,7 @@ export class AddonComponent implements OnInit {
         const parsedToken = jwt(accessToken);
         this.userRole = USER_ROLE[parsedToken["pepperi.employeetype"]];                               
 
-        singleSpaPropsSubject.subscribe(props => this.addon = props['addon']);
+        // singleSpaPropsSubject.subscribe(props => this.addon = props['addon']);
         this.subscription = this.routeParams.queryParams.subscribe( queryParams => {
             const view = queryParams?.view;
             const addonUUID = this.routeParams.snapshot.params.addon_uuid;

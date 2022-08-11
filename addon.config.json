@@ -1,6 +1,6 @@
 {
   "AddonUUID": "354c5123-a7d0-4f52-8fce-3cf1ebc95314",
-  "AddonVersion": "9.5.172",
+  "AddonVersion": "9.6.113",
   "DebugPort": 4500,
   "WebappBaseUrl": "https://app.sandbox.pepperi.com",
   "DefaultEditor": "editor",
@@ -15,13 +15,8 @@
     "vendors-node_modules_pepperi-addons_papi-sdk_dist_index_js-node_modules_jwt-decode_lib_index_js",
     "api"
   ],
-  "Assets": [
-    "en.json",
-    "en.ngx-lib.json",
-    "he.json"
-  ],
   "PublishConfig":{
-    "ClientStack": "ng10",
+    "ClientStack": "ng14",
     "Editors": [
        {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_profile&uri=distributordetails","Description": "Company Profile"},
        {"ParentPackageName": "Company Profile","PackageName": "editor?view=company_sync","Description": "Sync Settings"},

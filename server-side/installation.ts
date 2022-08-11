@@ -1,8 +1,9 @@
 import { AdditionalAddons, MigrationObject  } from './migration-data';
 import { Client, Request } from '@pepperi-addons/debug-server';
 import MyService from './my.service';
-import { Relation, tabsData, typeListTabsRelationNames } from './metadata';
+import { tabsData } from './metadata';
 import jwt_decode from "jwt-decode";
+import { Relation } from '@pepperi-addons/papi-sdk';
 
 export async function install(client: Client, req: Request){
     const resObject = await initLegacySettings(client, req);
@@ -18,9 +19,9 @@ export async function upgrade(client: Client, req: Request){
     const service = new MyService(client);     
     const addonsFields: Relation[] = await service.getRelations('TransactionTypeListTabs');
 
-    if(addonsFields == null ||  addonsFields.length == 0){
+    // if(addonsFields == null ||  addonsFields.length == 0){
         resObject = await initLegacySettings(client, req);          
-    }
+    // }
 
     if(resObject.success){               
         let epaymentObj = {Type: 'NgComponent', 
@@ -61,9 +62,9 @@ async function initLegacySettings(client: Client, req: Request){
     const accountKeys = ['general', 'forms',  'workflows'];
     try {
         await installAdditionalAddons(client, AdditionalAddons);
-        await addRelations(client, tabsData(transactionKeys), "TransactionTypeListTabs");
-        await addRelations(client, tabsData(activityKeys), "ActivityTypeListTabs");
-        await addRelations(client, tabsData(accountKeys), "AccountTypeListTabs");
+        await addRelations(client, tabsData(transactionKeys, client.AddonUUID), "TransactionTypeListTabs");
+        await addRelations(client, tabsData(activityKeys, client.AddonUUID), "ActivityTypeListTabs");
+        await addRelations(client, tabsData(accountKeys, client.AddonUUID), "AccountTypeListTabs");
         return { success: true };
     } catch(e){
         return { success: false };
