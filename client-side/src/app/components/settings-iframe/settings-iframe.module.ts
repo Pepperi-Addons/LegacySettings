@@ -38,7 +38,6 @@ import jwt from 'jwt-decode';
     borderTop = '16';
     browserLang = 'en';
     
-
     private _hostObject = null;
     @Input()
     set hostObject(value: any) {
@@ -48,6 +47,9 @@ import jwt from 'jwt-decode';
         this.borderTop = value?.borderTop ??  '0';
         this.start(value);
       }
+    }
+    get hostObject(): any {
+      return this._hostObject;
     }
 
 
@@ -123,32 +125,32 @@ import jwt from 'jwt-decode';
 
     }
 
-    start(options){
+    start(hostObject){
         //const addonUUID = this.routeParams.snapshot.params.addon_uuid;
-        if (!options?.addon) {
-            this.papiClient.addons.installedAddons.get(options?.uuid).then(addon => {
-                options.addon = addon;
-                this.init(options);
+        if (!hostObject?.addon) {
+            this.papiClient.addons.installedAddons.get(hostObject?.uuid).then(addon => {
+                hostObject.addon = addon;
+                this.init(hostObject);
             });
         }
         else {
-          this.init(options);
+          this.init(hostObject);
         }
     }
 
-    init(options){
+    init(hostObject){
       let baseURL = sessionStorage.getItem(SettingsIframeComponent.BASE_URL_KEY);
         if (!baseURL){
           this.papiClient.get('/configuration_fields?key=NewStudioUrl').then(res => {
               this.baseURL = res?.Value;
               sessionStorage.setItem(SettingsIframeComponent.BASE_URL_KEY, this.baseURL);
-              this.iframeCookieVersionSrc = `${this.baseURL}/cookieVersion.html?ver=${options?.addon?.Version}`;
-              this.changeSrc(`${this.baseURL}/${options?.path}`);
+              this.iframeCookieVersionSrc = `${this.baseURL}/cookieVersion.html?ver=${hostObject?.addon?.Version}`;
+              this.changeSrc(`${this.baseURL}/${hostObject?.path}`);
           });
         }
         else {
-            this.iframeCookieVersionSrc = `${baseURL}/cookieVersion.html?ver=${options?.addon?.Version}`;
-            this.changeSrc(`${baseURL}/${options?.path}`);
+            this.iframeCookieVersionSrc = `${baseURL}/cookieVersion.html?ver=${hostObject?.addon?.Version}`;
+            this.changeSrc(`${baseURL}/${hostObject?.path}`);
         }
     }
 

@@ -10,7 +10,6 @@ import { PepNgxLibModule } from '@pepperi-addons/ngx-lib';
     imports: [
         CommonModule,
         PepNgxLibModule,
-        // MaterialModule,
         SettingsIframeModule,
     ],
     exports: [AddonComponent],

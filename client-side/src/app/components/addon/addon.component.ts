@@ -1,5 +1,5 @@
 import { viewFlagDictionary } from './../../../../../server-side/dictionary';
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 // import { singleSpaPropsSubject } from "src/single-spa/single-spa-props";
 import { Subscription } from "rxjs";
@@ -32,6 +32,18 @@ export class AddonComponent implements OnInit {
     iframeData;
     addon = null;
     userRole;
+    
+    private _hostObject = null;
+    @Input()
+    set hostObject(value: any) {
+      this._hostObject = value;
+    }
+    get hostObject(): any {
+      return this._hostObject;
+    }
+
+    @Output() hostEvents: EventEmitter<any> = new EventEmitter();    
+
 
     constructor(
         // private service: AddonService,
@@ -45,6 +57,7 @@ export class AddonComponent implements OnInit {
 
     ngOnInit(): void {
         //this.userRole = JSON.parse(this.cookies.get(this.PEPPERI_TOKEN_COOKIE))?.values?.items?.userRole
+        debugger;
 
         const accessToken = this.session.getIdpToken();
         const parsedToken = jwt(accessToken);
@@ -57,7 +70,7 @@ export class AddonComponent implements OnInit {
             this.getPath(addonUUID, view).then( path =>{
                 const relativePath = path[0]?.Value ? path[0]?.Value : path;
                 if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
-                    this.iframeData = { addon: this.addon, uuid: addonUUID,  top: 70, borderTop: 16, path: relativePath }
+                    this.iframeData = { addon: this.hostObject.addon, uuid: addonUUID,  top: 70, borderTop: 16, path: relativePath }
                 }
             })
         });
@@ -86,6 +99,11 @@ export class AddonComponent implements OnInit {
 
     async checkLicense(flag){
         return await this.http.getPapiApiCall(`/meta_data/flags/${flag}`).toPromise();
+    }
+
+    onHostEvents(event) {
+        debugger;
+        this.hostEvents.emit(event);
     }
 
 }
