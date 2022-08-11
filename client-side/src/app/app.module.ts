@@ -7,12 +7,12 @@ import { AddonModule } from './components/addon/addon.module';
 import { PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { AddonComponent } from './components/addon/addon.component';
 
-const AddonUUID = '354c5123-a7d0-4f52-8fce-3cf1ebc95314';
+import { config } from './app.config';
+import { SettingsIframeComponent } from './components/settings-iframe/settings-iframe.module';
 
 @NgModule({
     declarations: [
         AppComponent
-
     ],
     imports: [
         BrowserModule,
@@ -22,7 +22,9 @@ const AddonUUID = '354c5123-a7d0-4f52-8fce-3cf1ebc95314';
         AppRoutingModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [
+        // AppComponent
+    ]
 })
 export class AppModule implements DoBootstrap {
     constructor(
@@ -32,6 +34,6 @@ export class AppModule implements DoBootstrap {
     }
 
     ngDoBootstrap() {
-        this.pepAddonService.defineCustomElement(`settings-iframe-element-${AddonUUID}`, AddonComponent, this.injector);
+        this.pepAddonService.defineCustomElement(`settings-iframe-element-${config.AddonUUID}`, SettingsIframeComponent, this.injector);
     }
 }

@@ -45,7 +45,7 @@ import jwt from 'jwt-decode';
 
       if (value) {
         this.borderTop = value?.borderTop ??  '0';
-        this.start(value);
+        this.start(value.options);
       }
     }
     get hostObject(): any {
@@ -125,32 +125,32 @@ import jwt from 'jwt-decode';
 
     }
 
-    start(hostObject){
+    start(data){
         //const addonUUID = this.routeParams.snapshot.params.addon_uuid;
-        if (!hostObject?.addon) {
-            this.papiClient.addons.installedAddons.get(hostObject?.uuid).then(addon => {
-                hostObject.addon = addon;
-                this.init(hostObject);
+        if (!data?.addon) {
+            this.papiClient.addons.installedAddons.get(data?.uuid).then(addon => {
+                data.addon = addon;
+                this.init(data);
             });
         }
         else {
-          this.init(hostObject);
+          this.init(data);
         }
     }
 
-    init(hostObject){
+    init(data){
       let baseURL = sessionStorage.getItem(SettingsIframeComponent.BASE_URL_KEY);
         if (!baseURL){
           this.papiClient.get('/configuration_fields?key=NewStudioUrl').then(res => {
               this.baseURL = res?.Value;
               sessionStorage.setItem(SettingsIframeComponent.BASE_URL_KEY, this.baseURL);
-              this.iframeCookieVersionSrc = `${this.baseURL}/cookieVersion.html?ver=${hostObject?.addon?.Version}`;
-              this.changeSrc(`${this.baseURL}/${hostObject?.path}`);
+              this.iframeCookieVersionSrc = `${this.baseURL}/cookieVersion.html?ver=${data?.addon?.Version}`;
+              this.changeSrc(`${this.baseURL}/${data?.path}`);
           });
         }
         else {
-            this.iframeCookieVersionSrc = `${baseURL}/cookieVersion.html?ver=${hostObject?.addon?.Version}`;
-            this.changeSrc(`${baseURL}/${hostObject?.path}`);
+            this.iframeCookieVersionSrc = `${baseURL}/cookieVersion.html?ver=${data?.addon?.Version}`;
+            this.changeSrc(`${baseURL}/${data?.path}`);
         }
     }
 

@@ -10,6 +10,7 @@ import {
     PepHttpService, PepCookieService, PepSessionService } from '@pepperi-addons/ngx-lib';
 import { iframeDictionary } from '../../../../../server-side/dictionary';
 import jwt from 'jwt-decode';
+import { config } from 'src/app/app.config';
 
 export enum USER_ROLE {
     'Admin' = 1,
@@ -43,7 +44,8 @@ export class AddonComponent implements OnInit {
     }
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter();    
-
+    
+    addonUUID = config.AddonUUID;
 
     constructor(
         // private service: AddonService,
@@ -57,8 +59,6 @@ export class AddonComponent implements OnInit {
 
     ngOnInit(): void {
         //this.userRole = JSON.parse(this.cookies.get(this.PEPPERI_TOKEN_COOKIE))?.values?.items?.userRole
-        debugger;
-
         const accessToken = this.session.getIdpToken();
         const parsedToken = jwt(accessToken);
         this.userRole = USER_ROLE[parsedToken["pepperi.employeetype"]];                               
@@ -66,13 +66,15 @@ export class AddonComponent implements OnInit {
         // singleSpaPropsSubject.subscribe(props => this.addon = props['addon']);
         this.subscription = this.routeParams.queryParams.subscribe( queryParams => {
             const view = queryParams?.view;
-            const addonUUID = this.routeParams.snapshot.params.addon_uuid;
-            this.getPath(addonUUID, view).then( path =>{
-                const relativePath = path[0]?.Value ? path[0]?.Value : path;
-                if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
-                    this.iframeData = { addon: this.hostObject.addon, uuid: addonUUID,  top: 70, borderTop: 16, path: relativePath }
-                }
-            })
+            // const addonUUID = this.routeParams.snapshot.params.addon_uuid;
+            if (view) {
+                this.getPath(this.addonUUID, view).then( path =>{
+                    const relativePath = path[0]?.Value ? path[0]?.Value : path;
+                    if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
+                        this.iframeData = { addon: this.hostObject.options.addon, uuid: this.addonUUID,  top: 70, borderTop: 16, path: relativePath }
+                    }
+                })
+            }
         });
     }
 
@@ -102,7 +104,6 @@ export class AddonComponent implements OnInit {
     }
 
     onHostEvents(event) {
-        debugger;
         this.hostEvents.emit(event);
     }
 
