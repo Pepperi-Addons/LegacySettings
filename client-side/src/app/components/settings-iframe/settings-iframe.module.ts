@@ -111,6 +111,10 @@ import jwt from 'jwt-decode';
 
     ngAfterViewInit() {       
       //this.settingsIframe.nativeElement.addEventListener('load', this.uploadDone.bind(this));
+        this.hostEvents.emit({
+            msgName: 'settings-iframe-loaded',
+            settingsIframe: this.settingsIframe
+        });
     }
 
     ngOnChanges(changes: SimpleChanges | any) {
