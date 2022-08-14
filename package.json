@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd ./server-side && npm run build && cd .. && cd ./client-side && npm run build && cd ..",
     "init": "npm run update_deps && npm run build",
-    "yarn": "",
-    "update_deps": "npm i && cd ./server-side && npm i && cd .. && cd ./client-side && yarn && cd ..",
+    "update_deps": "npm i && cd ./server-side && npm i && cd .. && cd ./client-side && npm i --force && cd ..",
     "publish-addon": "npm run build && publish-addon",
     "publish-addon-no-bump": "npm run build && publish-addon --no-bump-version"
   },
