@@ -1,5 +1,6 @@
 import { Relation } from "@pepperi-addons/papi-sdk";
 
+export const bundleFileName = 'legacy_settings';
 export function tabsData(tabsKeys: string[], addonUUID: string):Relation[] {
     const tabs: Relation[] = tabsKeys.map((key, index) =>{
         return  {
@@ -9,7 +10,7 @@ export function tabsData(tabsKeys: string[], addonUUID: string):Relation[] {
             Type: "NgComponent",
             Description: key,
             SubType: "NG14",
-            AddonRelativeURL: 'settings_iframe',
+            AddonRelativeURL: bundleFileName,
             ComponentName: 'SettingsIframeComponent',
             ModuleName: 'SettingsIframeModule',
             ElementsModule: 'WebComponents',

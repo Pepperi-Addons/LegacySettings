@@ -1,6 +1,6 @@
 {
   "AddonUUID": "354c5123-a7d0-4f52-8fce-3cf1ebc95314",
-  "AddonVersion": "9.6.119",
+  "AddonVersion": "9.6.126",
   "DebugPort": 4500,
   "WebappBaseUrl": "https://app.sandbox.pepperi.com",
   "DefaultEditor": "editor",
@@ -9,11 +9,7 @@
     "api.ts"
   ],
   "Editors": [
-    "main",
-    "settings_iframe",
-    "src_app_components_settings-iframe_settings-iframe_module_ts",
-    "vendors-node_modules_pepperi-addons_papi-sdk_dist_index_js-node_modules_jwt-decode_lib_index_js",
-    "api"
+    "main"
   ],
   "PublishConfig": {
     "ClientStack": "ng14",

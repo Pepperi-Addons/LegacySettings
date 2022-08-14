@@ -1,14 +1,11 @@
-import { viewFlagDictionary } from './../../../../../server-side/dictionary';
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 // import { singleSpaPropsSubject } from "src/single-spa/single-spa-props";
 import { Subscription } from "rxjs";
 // import { AddonService } from './addon.service';
 // import { TranslateService } from "@ngx-translate/core";
-import {
-    // PepLayoutService, PepScreenSizeType,
-    PepHttpService, PepCookieService, PepSessionService } from '@pepperi-addons/ngx-lib';
-import { iframeDictionary } from '../../../../../server-side/dictionary';
+import { PepHttpService, PepSessionService } from '@pepperi-addons/ngx-lib';
+import { iframeDictionary, viewFlagDictionary } from '../../../../../server-side/dictionary';
 import jwt from 'jwt-decode';
 import { config } from 'src/app/app.config';
 
@@ -20,15 +17,15 @@ export enum USER_ROLE {
 }
 
 @Component({
-  selector: 'addon',
-  templateUrl: './addon.component.html',
-  styleUrls: ['./addon.component.scss'],
-  providers: [
+    selector: 'addon',
+    templateUrl: './addon.component.html',
+    styleUrls: ['./addon.component.scss'],
+    providers: [
     //   AddonService
     ]
 })
 export class AddonComponent implements OnInit {
-    private readonly PEPPERI_TOKEN_COOKIE = 'PepperiUserSettings';
+    // private readonly PEPPERI_TOKEN_COOKIE = 'PepperiUserSettings';
     subscription: Subscription;
     iframeData;
     addon = null;
@@ -45,16 +42,17 @@ export class AddonComponent implements OnInit {
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter();    
     
-    addonUUID = config.AddonUUID;
+    addonUUID;
 
     constructor(
         // private service: AddonService,
         private http: PepHttpService,
         public routeParams: ActivatedRoute,
         public router: Router,
-        private cookies: PepCookieService,
+        // private cookies: PepCookieService,
         private session:  PepSessionService
     ) {
+        this.addonUUID = config.AddonUUID;
     }
 
     ngOnInit(): void {
@@ -71,7 +69,7 @@ export class AddonComponent implements OnInit {
                 this.getPath(this.addonUUID, view).then( path =>{
                     const relativePath = path[0]?.Value ? path[0]?.Value : path;
                     if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
-                        this.iframeData = { addon: this.hostObject.options.addon, uuid: this.addonUUID,  top: 70, borderTop: 16, path: relativePath }
+                        this.iframeData = { addon: this.hostObject?.options?.addon, uuid: this.addonUUID, top: 70, borderTop: 16, path: relativePath }
                     }
                 })
             }
@@ -81,7 +79,6 @@ export class AddonComponent implements OnInit {
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
     }
-   
 
     async getPath(uuid, viewKey): Promise<any> {
         // const flags = Object.keys(viewFlagDictionary);

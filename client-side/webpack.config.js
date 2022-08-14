@@ -1,5 +1,6 @@
 const { shareAll, share, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
-const filename = `settings_iframe`;
+// const TerserPlugin = require('terser-webpack-plugin');
+const filename = `legacy_settings`;
 
 const webpackConfig = withModuleFederationPlugin({
     name: filename,
@@ -16,7 +17,7 @@ module.exports = {
     ...webpackConfig,
     output: {
         ...webpackConfig.output,
-        uniqueName: filename,
+        uniqueName: filename
     },
 };
 

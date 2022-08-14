@@ -1,14 +1,14 @@
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
-import { AddonModule } from './components/addon/addon.module';
 import { PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
-import { AddonComponent } from './components/addon/addon.component';
+
+import { SettingsModule, SettingsComponent } from './components/settings';
+import { SettingsIframeComponent, SettingsIframeModule } from './components/settings-iframe';
+import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 
 import { config } from './app.config';
-import { SettingsIframeComponent } from './components/settings-iframe/settings-iframe.module';
 
 @NgModule({
     declarations: [
@@ -16,24 +16,37 @@ import { SettingsIframeComponent } from './components/settings-iframe/settings-i
     ],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule,
         PepNgxLibModule,
-        AddonModule,
-        AppRoutingModule
+        SettingsModule,
+        SettingsIframeModule,
+        AppRoutingModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(config.AddonUUID, addonService, ['ngx-lib']),
+                deps: [PepAddonService]
+            }
+        }),
     ],
-    providers: [],
+    providers: [
+        TranslateStore
+    ],
     bootstrap: [
-        // AppComponent
+        // AddonComponent
     ]
 })
 export class AppModule implements DoBootstrap {
     constructor(
         private injector: Injector,
+        translate: TranslateService,
         private pepAddonService: PepAddonService
     ) {
+        this.pepAddonService.setDefaultTranslateLang(translate);
     }
 
     ngDoBootstrap() {
+        this.pepAddonService.defineCustomElement(`settings-element-${config.AddonUUID}`, SettingsComponent, this.injector);
         this.pepAddonService.defineCustomElement(`settings-iframe-element-${config.AddonUUID}`, SettingsIframeComponent, this.injector);
     }
 }
