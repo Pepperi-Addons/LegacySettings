@@ -69,7 +69,15 @@ export class AddonComponent implements OnInit {
                 this.getPath(this.addonUUID, view).then( path =>{
                     const relativePath = path[0]?.Value ? path[0]?.Value : path;
                     if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
-                        this.iframeData = { addon: this.hostObject?.options?.addon, uuid: this.addonUUID, top: 70, borderTop: 16, path: relativePath }
+                        this.iframeData = {
+                            options: { 
+                                addon: this.hostObject?.options?.addon,
+                                uuid: this.addonUUID,
+                                top: 70,
+                                borderTop: 16,
+                                path: relativePath
+                            }
+                        };
                     }
                 })
             }
