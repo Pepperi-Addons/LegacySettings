@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json'
 import config from '../addon.config.json'
 
 export default config.Endpoints.map(endpoint => {
@@ -8,7 +9,7 @@ export default config.Endpoints.map(endpoint => {
         input: endpoint,
         output: [
          {
-          dir: '../publish',
+          dir: '../publish/',
           format: 'cjs'
          }
         ],
@@ -24,7 +25,8 @@ export default config.Endpoints.map(endpoint => {
              }
           }),
           resolve(),
-          commonjs()
+          commonjs(),
+          json()
         ]
        }
     }
