@@ -194,10 +194,6 @@ async function upsertSettingsRelation(client: Client) {
     settingsRelations.push(getSettingsRelation(client, 'Configuration', 'user_defined_tables', 'view=config_mapdata&uri=grid/mapdatametadata', 'UserDefinedTables', 'User Defined Tables'));
 
     await addRelations(client, settingsRelations);
-    // const service = new MyService(client);
-    // settingsRelations.forEach(async (relation) => {
-    //     await service.createRelation(relation);
-    // });
 }
 
 
