@@ -19,43 +19,35 @@ export async function uninstall(client: Client, request: Request){
 }
 
 export async function upgrade(client: Client, req: Request){
+    let resObject = {success: true};
+    
+    const service = new MyService(client);     
+    // const addonsFields: Relation[] = await service.getRelations('TransactionTypeListTabs');
 
-    try {
-        let resObject = {success: true};
-        
-        const service = new MyService(client);     
-        // const addonsFields: Relation[] = await service.getRelations('TransactionTypeListTabs');
+    // if(addonsFields == null ||  addonsFields.length == 0){
+        resObject = await initLegacySettings(client, req);          
+    // }
+    
+    if(resObject.success){
+        resObject = await upsertSettingsRelation(client);
 
-        // if(addonsFields == null ||  addonsFields.length == 0){
-            resObject = await initLegacySettings(client, req);          
-        // }
-        
-        if(resObject.success){
-            resObject = await upsertSettingsRelation(client);
-
-            if(resObject.success){               
-                let epaymentObj = {Type: 'NgComponent', 
-                                    SubType:'NG11', 
-                                    ModuleName:'SettingsIframeModule',                            
-                                    AddonRelativeURL: bundleFileName,
-                                    ComponentName:'SettingsIframeComponent',Name:'epayment', RelationName:'TransactionTypeListTabs',
-                                    AddonUUID: client.AddonUUID ,Hidden: true};
-                
+        if(resObject.success){               
+            let epaymentObj = {Type: 'NgComponent', 
+                                SubType:'NG11', 
+                                ModuleName:'SettingsIframeModule',                            
+                                AddonRelativeURL: bundleFileName,
+                                ComponentName:'SettingsIframeComponent',Name:'epayment', RelationName:'TransactionTypeListTabs',
+                                AddonUUID: client.AddonUUID ,Hidden: true};
+            
 
 
-                if(epaymentObj){                 
-                    const res =  await service.deleteRelation(epaymentObj);            
-                }
-            }   
-        }
-        return resObject;
+            if(epaymentObj){                 
+                const res =  await service.deleteRelation(epaymentObj);            
+            }
+        }   
     }
-    catch(err) {
-        return {
-            success: false,
-            resultObject: err
-        }
-    }
+    
+    return resObject;
 }
 
 export async function downgrade(client: Client, request: Request){
@@ -100,29 +92,15 @@ async function installAdditionalAddons(client: Client, additionalAddons: Migrati
 
 async function addRelations(client: Client, relations: Relation[], relationName = ''){
     const service = new MyService(client);
-    // const promises: Promise<any>[] = [];
-    // relations.forEach(relation => {
-        //     if (relationName.length > 0) {
-        //         relation.RelationName = relationName;
-    //     }
-    //     promises.push(service.createRelation(relation));
-    // });
-    // const result = await Promise.all(promises);
-    // return result;
-    for (const relation of relations) {
+    const promises: Promise<any>[] = [];
+    relations.forEach(relation => {
         if (relationName.length > 0) {
             relation.RelationName = relationName;
         }
-        console.log(`about to update relation ${JSON.stringify(relation)}`);
-        try {
-            const retVal = await service.createRelation(relation);
-            console.log(`relation update succeeded. recieved ${JSON.stringify(retVal)}`);
-        }
-        catch (err) {
-            console.log(`failed to update relation. err: ${JSON.stringify(err)}`);
-            throw err;
-        }
-    }
+        promises.push(service.createRelation(relation));
+    });
+    const result = await Promise.all(promises);
+    return result;
 }
 
 function getSettingsRelation(client: Client, groupName: string, slugName: string, queryParams: string, name: string, desc: string): Relation {
@@ -230,3 +208,5 @@ async function upsertSettingsRelation(client: Client) {
         return { success: false };
     }
 }
+
+
