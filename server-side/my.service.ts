@@ -80,7 +80,7 @@ class MyService {
     }
 
     createRelation(relation): Promise<any> {
-                return this.papiClient.post('/addons/data/relations', relation);
+        return this.papiClient.post('/addons/data/relations', relation);
     }
 
     async deleteRelation(epayment:any) {

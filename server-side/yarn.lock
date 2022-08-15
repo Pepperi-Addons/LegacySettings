@@ -2,18 +2,17 @@
 # yarn lockfile v1
 
 
-"@pepperi-addons/debug-server@*":
-  "integrity" "sha512-9JdLyvbQZ/9csHhR2mUIy2XUJrWFWV9kZdB2iRw5xJfeHfmcYTkNckWozaQtvXv+xkGVN8LLIaaor+xVbsdz1w=="
-  "resolved" "https://registry.npmjs.org/@pepperi-addons/debug-server/-/debug-server-0.0.37.tgz"
-  "version" "0.0.37"
+"@pepperi-addons/debug-server@0.0.32":
+  "integrity" "sha512-YC/DWH9yQsWqnEO2dRvUhpQlzvvgFac0X3EFEBTG8Rja85uoXjmaB0UGn5PaVbsnQt5c8DH6av0UPRWnTFti0A=="
+  "resolved" "https://registry.npmjs.org/@pepperi-addons/debug-server/-/debug-server-0.0.32.tgz"
+  "version" "0.0.32"
   dependencies:
     "body-parser" "^1.19.0"
     "cors" "^2.8.5"
     "express" "^4.17.1"
     "jwt-decode" "^2.2.0"
-    "node-fetch" "^2.6.7"
 
-"@pepperi-addons/papi-sdk@*":
+"@pepperi-addons/papi-sdk@^1.31.1":
   "integrity" "sha512-biPSTZTm8Tm7bYdjBF2VWLUcastKW89ijcef6xHLur5R5dIBvd7DCzmMUBTUJC/MEkFm4jq+TH9YaAGAAItThw=="
   "resolved" "https://registry.npmjs.org/@pepperi-addons/papi-sdk/-/papi-sdk-1.39.8.tgz"
   "version" "1.39.8"
@@ -1082,7 +1081,7 @@
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   "version" "0.6.2"
 
-"node-fetch@^2.6.0", "node-fetch@^2.6.1", "node-fetch@^2.6.7":
+"node-fetch@^2.6.0", "node-fetch@^2.6.1":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   "version" "2.6.7"

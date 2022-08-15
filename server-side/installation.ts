@@ -120,80 +120,84 @@ async function upsertSettingsRelation(client: Client) {
     let settingsRelations: Relation[] = [];
     
     // Company Profile
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_profile&uri=distributordetails','CompanyProfile','Company Profile'));
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_sync', 'SyncSettings', 'Sync Settings')); 
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_smtp', 'EmailSettings', 'Email Settings')); 
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_securitygroups&uri=grid/securitygroups', 'SecurityGroups', 'Security Groups')); 
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_webapp_homebuttons', 'AppHomeScreen', 'App Home Screen')); 
-    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'editor', 'view=company_webapp_mainbutton', 'HomeScreenShortcut', 'Home Screen Shortcut'));
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'company_profile', 'view=company_profile&uri=distributordetails','CompanyProfile','Company Profile'));
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'sync_settings', 'view=company_sync', 'SyncSettings', 'Sync Settings')); 
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'email_settings', 'view=company_smtp', 'EmailSettings', 'Email Settings')); 
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'security_groups', 'view=company_securitygroups&uri=grid/securitygroups', 'SecurityGroups', 'Security Groups')); 
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'app_home_screen', 'view=company_webapp_homebuttons', 'AppHomeScreen', 'App Home Screen')); 
+    settingsRelations.push(getSettingsRelation(client, 'Company Profile', 'home_screen_shortcut', 'view=company_webapp_mainbutton', 'HomeScreenShortcut', 'Home Screen Shortcut'));
 
     // Items
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_filters', 'ItemsFilters', 'Filters')); 
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_imageuploadersetup', 'AutomatedImageUploader', 'Automated Image Uploader')); 
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_variantdimensions&uri=grid/dimensions/colors', 'VariantDimensions', 'Variant Dimensions')); 
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_genericlist&uri=genericlist/item', 'ItemLists', 'Item Lists')); 
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_fields', 'ItemsFields', 'Fields')); 
-    settingsRelations.push(getSettingsRelation(client, 'Items', 'editor', 'view=items_share_email', 'ShareEmailInfo', 'Share Email Info')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'items_filters', 'view=items_filters', 'ItemsFilters', 'Filters')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'automated_image_uploader', 'view=items_imageuploadersetup', 'AutomatedImageUploader', 'Automated Image Uploader')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'variant_dimensions', 'view=items_variantdimensions&uri=grid/dimensions/colors', 'VariantDimensions', 'Variant Dimensions')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'item_lists', 'view=items_genericlist&uri=genericlist/item', 'ItemLists', 'Item Lists')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'items_fields', 'view=items_fields', 'ItemsFields', 'Fields')); 
+    settingsRelations.push(getSettingsRelation(client, 'Items', 'share_email_info', 'view=items_share_email', 'ShareEmailInfo', 'Share Email Info')); 
 
     // Data
-    settingsRelations.push(getSettingsRelation(client, 'Data', 'editor', 'view=items_manage', 'ManageItems', 'Manage Items')); 
-    settingsRelations.push(getSettingsRelation(client, 'Data', 'editor', 'view=catalog_details', 'ManageCatalogs', 'Manage Catalogs')); 
-    settingsRelations.push(getSettingsRelation(client, 'Data', 'editor', 'view=accounts_display', 'ManageAccounts', 'Manage Accounts')); 
+    settingsRelations.push(getSettingsRelation(client, 'Data', 'manage_items', 'view=items_manage', 'ManageItems', 'Manage Items')); 
+    settingsRelations.push(getSettingsRelation(client, 'Data', 'manage_catalogs', 'view=catalog_details', 'ManageCatalogs', 'Manage Catalogs')); 
+    settingsRelations.push(getSettingsRelation(client, 'Data', 'manage_accounts', 'view=accounts_display', 'ManageAccounts', 'Manage Accounts')); 
 
     // Catalogs
-    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'editor', 'view=catalogs_manage', 'ManageCatalog', 'Manage Catalog')); 
-    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'editor', 'view=catalogs_forms', 'CatalogsEditForm', 'Edit Form')); 
-    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'editor', 'view=catalogs_views&uri=uicontrols/single/catalog/CatalogSelectionCard', 'CatalogViews', 'Catalog Views')); 
-    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'editor', 'view=catalogs_fields&uri=grid/fields/catalogs', 'CatalogsFields', 'Fields')); 
+    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'manage_catalog', 'view=catalogs_manage', 'ManageCatalog', 'Manage Catalog')); 
+    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'catalogs_edit_form', 'view=catalogs_forms', 'CatalogsEditForm', 'Edit Form')); 
+    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'catalog_views', 'view=catalogs_views&uri=uicontrols/single/catalog/CatalogSelectionCard', 'CatalogViews', 'Catalog Views')); 
+    settingsRelations.push(getSettingsRelation(client, 'Catalogs', 'catalogs_fields', 'view=catalogs_fields&uri=grid/fields/catalogs', 'CatalogsFields', 'Fields')); 
 
     // Accounts
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_lists', 'AccountLists', 'Account Lists'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_genericlist', 'AccountListsNew', 'Account Lists (new)'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_views_map', 'AccountsMapView', 'Map View'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_card&uri=uicontrols/single/account/AccountCard', 'AccountsCardLayout', 'Card Layout'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_dashboardlayout&uri=uicontrols/list/account/AccountDashboardLayout', 'AccountDashboardLayout', 'Account Dashboard Layout'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_search', 'AccountsSearch', 'Search'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_smartsearch', 'AccountsSmartSearch', 'Smart Search'));
-    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'editor', 'view=accounts_fields&uri=grid/fields/accounts', 'AccountsFields', 'Fields'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'account_lists', 'view=accounts_lists', 'AccountLists', 'Account Lists'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'account_lists_new', 'view=accounts_genericlist', 'AccountListsNew', 'Account Lists (new)'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'accounts_map_view', 'view=accounts_views_map', 'AccountsMapView', 'Map View'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'accounts_card_layout', 'view=accounts_card&uri=uicontrols/single/account/AccountCard', 'AccountsCardLayout', 'Card Layout'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'account_dashboard_layout', 'view=accounts_dashboardlayout&uri=uicontrols/list/account/AccountDashboardLayout', 'AccountDashboardLayout', 'Account Dashboard Layout'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'accounts_search', 'view=accounts_search', 'AccountsSearch', 'Search'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'accounts_smart_search', 'view=accounts_smartsearch', 'AccountsSmartSearch', 'Smart Search'));
+    settingsRelations.push(getSettingsRelation(client, 'Accounts', 'accounts_fields', 'view=accounts_fields&uri=grid/fields/accounts', 'AccountsFields', 'Fields'));
     
     // Branded App
-    settingsRelations.push(getSettingsRelation(client, 'Branded App', 'editor', 'view=company_branding', 'Branding', 'Branding'));
-    settingsRelations.push(getSettingsRelation(client, 'Branded App', 'editor', 'view=company_webapp_homepage&uri=uicontrols/single/company_profile/WebAppMainBar', 'WebAppMainBar', 'WebApp Main Bar'));
+    settingsRelations.push(getSettingsRelation(client, 'Branded App', 'branding', 'view=company_branding', 'Branding', 'Branding'));
+    settingsRelations.push(getSettingsRelation(client, 'Branded App', 'web_app_main_bar', 'view=company_webapp_homepage&uri=uicontrols/single/company_profile/WebAppMainBar', 'WebAppMainBar', 'WebApp Main Bar'));
 
     // Contacts
-    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'editor', 'view=contacts_genericlist&uri=genericlist/contact_person', 'ContactLists', 'Contact Lists'));
-    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'editor', 'view=contacts_types&uri=TypesSettings/contact_person', 'ContactSettings', 'Contact Settings'));
-    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'editor', 'view=contacts_fields&uri=grid/fields/contacts', 'ContactsFields', 'Fields'));
+    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'contact_lists', 'view=contacts_genericlist&uri=genericlist/contact_person', 'ContactLists', 'Contact Lists'));
+    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'contact_settings', 'view=contacts_types&uri=TypesSettings/contact_person', 'ContactSettings', 'Contact Settings'));
+    settingsRelations.push(getSettingsRelation(client, 'Contacts', 'contacts_fields', 'view=contacts_fields&uri=grid/fields/contacts', 'ContactsFields', 'Fields'));
 
     // Users
-    settingsRelations.push(getSettingsRelation(client, 'Users', 'editor', 'view=users_manage', 'ManageUsers', 'Manage Users'));
-    settingsRelations.push(getSettingsRelation(client, 'Users', 'editor', 'view=users_roles', 'UsersRoleHierarchy', 'Role Hierarchy'));
-    settingsRelations.push(getSettingsRelation(client, 'Users', 'editor', 'view=users_profiles', 'UsersProfiles', 'Profiles'));
-    settingsRelations.push(getSettingsRelation(client, 'Users', 'editor', 'view=users_genericlist&uri=genericlist/user', 'UserLists', 'User Lists'));
+    settingsRelations.push(getSettingsRelation(client, 'Users', 'manage_users', 'view=users_manage', 'ManageUsers', 'Manage Users'));
+    settingsRelations.push(getSettingsRelation(client, 'Users', 'users_role_hierarchy', 'view=users_roles', 'UsersRoleHierarchy', 'Role Hierarchy'));
+    settingsRelations.push(getSettingsRelation(client, 'Users', 'users_profiles', 'view=users_profiles', 'UsersProfiles', 'Profiles'));
+    settingsRelations.push(getSettingsRelation(client, 'Users', 'user_lists', 'view=users_genericlist&uri=genericlist/user', 'UserLists', 'User Lists'));
 
     // Sales Activities
-    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'editor', 'view=sa_genericlist_activities&uri=genericlist/activity', 'ActivityLists', 'Activity Lists'));
-    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'editor', 'view=sa_genericlist_transaction_line&uri=genericlist/transaction_line', 'TransactionLineReport', 'Transaction line report'));
-    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'editor', 'view=sa_salesdashboard', 'SalesDashboardSettings', 'Sales Dashboard Settings'));
-    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'editor', 'view=activity_planning_display', 'ActivityPlanningDisplayOptions', 'Activity Planning Display Options'));
+    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'activity_lists', 'view=sa_genericlist_activities&uri=genericlist/activity', 'ActivityLists', 'Activity Lists'));
+    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'transaction_line_report', 'view=sa_genericlist_transaction_line&uri=genericlist/transaction_line', 'TransactionLineReport', 'Transaction line report'));
+    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'sales_dashboard_settings', 'view=sa_salesdashboard', 'SalesDashboardSettings', 'Sales Dashboard Settings'));
+    settingsRelations.push(getSettingsRelation(client, 'Sales Activities', 'activity_planning_display_options', 'view=activity_planning_display', 'ActivityPlanningDisplayOptions', 'Activity Planning Display Options'));
 
     // Pricing Policy
-    settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'editor', 'view=pricing_policy', 'PricingPolicy', 'Pricing Policy'));
-    settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'editor', 'view=pricing_pricelevel&uri=grid/pricelevels/pricelists', 'PriceLevel', 'Price Level'));
+    settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'pricing_policy', 'view=pricing_policy', 'PricingPolicy', 'Pricing Policy'));
+    settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'price_level', 'view=pricing_pricelevel&uri=grid/pricelevels/pricelists', 'PriceLevel', 'Price Level'));
 
     // ERP Integrarion
-    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'editor', 'view=erp_pluginsettings', 'PluginSettings', 'Plugin Settings'));
-    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'editor', 'view=erp_setup&uri=erpdetails', 'ERPConfiguration', 'Configuration'));
-    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'editor', 'view=erp_files', 'ERPFileLogs', 'File Upload and Logs'));
+    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'plugin_settings', 'view=erp_pluginsettings', 'PluginSettings', 'Plugin Settings'));
+    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'erp_configuration', 'view=erp_setup&uri=erpdetails', 'ERPConfiguration', 'Configuration'));
+    settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'erp_file_logs', 'view=erp_files', 'ERPFileLogs', 'File Upload and Logs'));
 
     // Configuration
-    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'editor', 'view=config_configurationfiles&uri=grid/configurationfiles', 'ConfigurationFiles', 'Configuration Files'));
-    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'editor', 'view=config_statuses', 'ConfigurationStatuses', 'Statuses'));
-    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'editor', 'view=config_translationfiles', 'ConfigurationTranslationFiles', 'TranslationFiles'));
-    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'editor', 'view=config_onlineactions', 'OnlineAddons', 'Online Add-ons'));
-    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'editor', 'view=config_mapdata&uri=grid/mapdatametadata', 'UserDefinedTables', 'User Defined Tables'));
+    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'configuration_files', 'view=config_configurationfiles&uri=grid/configurationfiles', 'ConfigurationFiles', 'Configuration Files'));
+    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'configuration_statuses', 'view=config_statuses', 'ConfigurationStatuses', 'Statuses'));
+    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'configuration_translation_files', 'view=config_translationfiles', 'ConfigurationTranslationFiles', 'TranslationFiles'));
+    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'online_addons', 'view=config_onlineactions', 'OnlineAddons', 'Online Add-ons'));
+    settingsRelations.push(getSettingsRelation(client, 'Configuration', 'user_defined_tables', 'view=config_mapdata&uri=grid/mapdatametadata', 'UserDefinedTables', 'User Defined Tables'));
 
     await addRelations(client, settingsRelations);
+    // const service = new MyService(client);
+    // settingsRelations.forEach(async (relation) => {
+    //     await service.createRelation(relation);
+    // });
 }
 
 
