@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 // import { singleSpaPropsSubject } from "src/single-spa/single-spa-props";
-import { Subscription } from "rxjs";
+// import { Subscription } from "rxjs";
 // import { AddonService } from './addon.service';
 // import { TranslateService } from "@ngx-translate/core";
 import { PepHttpService, PepSessionService } from '@pepperi-addons/ngx-lib';
@@ -26,7 +26,7 @@ export enum USER_ROLE {
 })
 export class AddonComponent implements OnInit {
     // private readonly PEPPERI_TOKEN_COOKIE = 'PepperiUserSettings';
-    subscription: Subscription;
+    // subscription: Subscription;
     iframeData;
     addon = null;
     userRole;
@@ -82,7 +82,7 @@ export class AddonComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-      this.subscription.unsubscribe();
+    //   this.subscription.unsubscribe();
     }
 
     async getPath(uuid, viewKey): Promise<any> {
