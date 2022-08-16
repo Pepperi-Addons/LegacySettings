@@ -56,32 +56,29 @@ export class AddonComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.userRole = JSON.parse(this.cookies.get(this.PEPPERI_TOKEN_COOKIE))?.values?.items?.userRole
         const accessToken = this.session.getIdpToken();
         const parsedToken = jwt(accessToken);
         this.userRole = USER_ROLE[parsedToken["pepperi.employeetype"]];                               
 
-        // singleSpaPropsSubject.subscribe(props => this.addon = props['addon']);
-        this.subscription = this.routeParams.queryParams.subscribe( queryParams => {
-            const view = queryParams?.view;
-            // const addonUUID = this.routeParams.snapshot.params.addon_uuid;
-            if (view) {
-                this.getPath(this.addonUUID, view).then( path =>{
-                    const relativePath = path[0]?.Value ? path[0]?.Value : path;
-                    if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
-                        this.iframeData = {
-                            options: { 
-                                addon: this.hostObject?.options?.addon,
-                                uuid: this.addonUUID,
-                                top: 70,
-                                borderTop: 16,
-                                path: relativePath
-                            }
-                        };
-                    }
-                })
-            }
-        });
+        let params = (new URL(window.location.href)).searchParams;
+        let view = params.get("view");
+
+        if (view) {
+            this.getPath(this.addonUUID, view).then( path =>{
+                const relativePath = path[0]?.Value ? path[0]?.Value : path;
+                if (relativePath && (this.userRole === 'Admin' || this.userRole === 'VARAdmin')){
+                    this.iframeData = {
+                        options: { 
+                            addon: this.hostObject?.options?.addon,
+                            uuid: this.addonUUID,
+                            top: 70,
+                            borderTop: 16,
+                            path: relativePath
+                        }
+                    };
+                }
+            })
+        }
     }
 
     ngOnDestroy(): void {
