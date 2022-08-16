@@ -189,10 +189,10 @@ async function upsertSettingsRelation(client: Client) {
         settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'pricing_policy', 'view=pricing_policy', 'PricingPolicy', 'Pricing Policy'));
         settingsRelations.push(getSettingsRelation(client, 'Pricing Policy', 'price_level', 'view=pricing_pricelevel&uri=grid/pricelevels/pricelists', 'PriceLevel', 'Price Level'));
 
-        // ERP Integrarion
-        settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'plugin_settings', 'view=erp_pluginsettings', 'PluginSettings', 'Plugin Settings'));
-        settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'erp_configuration', 'view=erp_setup&uri=erpdetails', 'ERPConfiguration', 'Configuration'));
-        settingsRelations.push(getSettingsRelation(client, 'ERP Integrarion', 'erp_file_logs', 'view=erp_files', 'ERPFileLogs', 'File Upload and Logs'));
+        // ERP Integration
+        settingsRelations.push(getSettingsRelation(client, 'ERP Integration', 'plugin_settings', 'view=erp_pluginsettings', 'PluginSettings', 'Plugin Settings'));
+        settingsRelations.push(getSettingsRelation(client, 'ERP Integration', 'erp_configuration', 'view=erp_setup&uri=erpdetails', 'ERPConfiguration', 'Configuration'));
+        settingsRelations.push(getSettingsRelation(client, 'ERP Integration', 'erp_file_logs', 'view=erp_files', 'ERPFileLogs', 'File Upload and Logs'));
 
         // Configuration
         settingsRelations.push(getSettingsRelation(client, 'Configuration', 'configuration_files', 'view=config_configurationfiles&uri=grid/configurationfiles', 'ConfigurationFiles', 'Configuration Files'));

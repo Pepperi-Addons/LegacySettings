@@ -1,6 +1,6 @@
 {
   "AddonUUID": "354c5123-a7d0-4f52-8fce-3cf1ebc95314",
-  "AddonVersion": "9.6.145",
+  "AddonVersion": "9.5.337",
   "DebugPort": 4500,
   "WebappBaseUrl": "https://app.sandbox.pepperi.com",
   "DefaultEditor": "editor",
@@ -225,17 +225,17 @@
         "Description": "Price Level"
       },
       {
-        "ParentPackageName": "ERP Integrarion",
+        "ParentPackageName": "ERP Integration",
         "PackageName": "plugin_settings?view=erp_pluginsettings",
         "Description": "Plugin Settings"
       },
       {
-        "ParentPackageName": "ERP Integrarion",
+        "ParentPackageName": "ERP Integration",
         "PackageName": "erp_configuration?view=erp_setup&uri=erpdetails",
         "Description": "Configuration"
       },
       {
-        "ParentPackageName": "ERP Integrarion",
+        "ParentPackageName": "ERP Integration",
         "PackageName": "erp_file_logs?view=erp_files",
         "Description": "File Upload and Logs"
       },
