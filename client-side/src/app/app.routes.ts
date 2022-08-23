@@ -1,15 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmptyRouteComponent } from './components/empty-route/empty-route.component';
 
 const routes: Routes = [
     {
-        path: '',
-        loadChildren: () => import('./components/settings/settings.module').then(m => m.SettingsModule),
-    },
-    {
         path: '**',
-        component: EmptyRouteComponent
+        loadChildren: () => import('./components/settings/settings.module').then(m => m.SettingsModule),
     }
 ];
 
