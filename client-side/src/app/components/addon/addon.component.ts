@@ -91,7 +91,13 @@ export class AddonComponent implements OnInit {
         if (viewKey == 'accounts_genericlist'){
             const hasPermission = await this.checkLicense(viewFlagDictionary[viewKey]).catch(err => false);
             if (!hasPermission){
-                this.router.navigate(['/settings/no_license']);
+                // this.router.navigate(['/settings/no_license']);
+                const eventData = {
+                    detail: viewKey,
+                };
+        
+                const customEvent = new CustomEvent('settings-no-license', eventData);
+                window.dispatchEvent(customEvent);
             }
         }
         // const promises = [];
