@@ -8,7 +8,7 @@
     "build": "cd ./client-side && npm run build && cd .. && cd ./server-side && npm run build && cd ..",
     "init": "npm run update_deps && npm run build",
     "update_deps": "npm i && cd ./server-side && npm i && cd .. && cd ./client-side && npm i --force && cd ..",
-    "publish-addon": "npm run build && publish-addon",
+    "publish-addon": "npm run build && publish-addon --no-bump-version",
     "publish-addon-no-bump": "npm run build && publish-addon --no-bump-version"
   },
   "keywords": [],
