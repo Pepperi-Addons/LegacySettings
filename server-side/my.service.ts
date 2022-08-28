@@ -98,6 +98,27 @@ class MyService {
         }
     }
 
+    async downgradeRelation(){
+
+         //update legacy settings relation
+         try{
+            
+            let customerRelations = await  this.papiClient.get(`/addons/data/relations`);
+           
+            customerRelations.forEach(async relation => {
+                if(relation?.ModuleName === 'SettingsIframeModule') {
+                    relation.AddonRelativeURL = 'settings_iframe';
+                    await this.papiClient.post('/addons/data/relations', relation);
+                }                                 
+                
+            });                                                            
+            
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
     async getSlugsRelation(queryParams) : Promise<any>{                
 
         let relObj = await this.papiClient.get(`/addons/data/relations?where=RelationName=UIFieldBank`)

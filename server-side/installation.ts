@@ -51,6 +51,8 @@ export async function upgrade(client: Client, req: Request){
 }
 
 export async function downgrade(client: Client, request: Request){
+    const service = new MyService(client);
+    await service.downgradeRelation();
     return {success:true}
 }
 
