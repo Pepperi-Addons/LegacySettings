@@ -100,13 +100,18 @@ class MyService {
 
     async downgradeRelation(){
 
+
+        
+
          //update legacy settings relation
          try{
+            let condition = "RelationName='TransactionTypeListTabs' OR RelationName='ActivityTypeListTabs' OR RelationName='AccountTypeListTabs'"            
+            let customerRelations = await  this.papiClient.get(`/addons/data/relations?where=${condition}`);
             
-            let customerRelations = await  this.papiClient.get(`/addons/data/relations`);
+            //?where=AddonRelativeURL=legacy_settings
            
-            customerRelations.forEach(async relation => {
-                if(relation?.ModuleName === 'SettingsIframeModule') {
+            customerRelations.forEach(async relation => {                
+                if(relation?.ModuleName === 'SettingsIframeModule' || relation?.componentName === "SettingsIframeComponent") {
                     relation.AddonRelativeURL = 'settings_iframe';
                     await this.papiClient.post('/addons/data/relations', relation);
                 }                                 
