@@ -20,9 +20,12 @@ const routes: Routes = [
                 path: ':editor',
                 component: AddonComponent
             },
-            { path: '**', component: EmptyRouteComponent },
+            { path: '**', component: AddonComponent },
         ]
     },
+    {
+        path: '**', component: AddonComponent // Try to fix bug DI-21265
+    }
 ];
 
 @NgModule({
