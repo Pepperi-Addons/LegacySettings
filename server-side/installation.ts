@@ -87,10 +87,13 @@ async function installAdditionalAddons(client: Client, additionalAddons: Migrati
     const keysToInstall = Object.keys(additionalAddons)
         .filter( key => additionalAddons[key].distributors.findIndex(distributor => distributor === distributorID) > -1);
     const installPromises:Promise<any>[] = [];
-    keysToInstall.forEach(key => installPromises.push(service.installAddon(additionalAddons[key]?.uuid)));
-    const AdditionalAddons = await Promise.all(installPromises);
-    return AdditionalAddons;
+    if(keysToInstall.length > 0){
+        keysToInstall.forEach(key => installPromises.push(service.installAddon(additionalAddons[key]?.uuid)));
+        const AdditionalAddons = await Promise.all(installPromises);
+    }
+   // return AdditionalAddons;
 }
+
 
 async function addRelations(client: Client, relations: Relation[], relationName = ''){
     const service = new MyService(client);
@@ -100,8 +103,20 @@ async function addRelations(client: Client, relations: Relation[], relationName 
             relation.RelationName = relationName;
         }
         promises.push(service.createRelation(relation));
+        // .then(() =>  {
+        //     console.log("successfully relation added")
+        // })
+        // .catch(e => {
+        //     console.error('error on create relation', e)
+        // }));
     });
-    const result = await Promise.all(promises);
+    let result;
+    try {
+        result = await Promise.all(promises);
+        
+    } catch (error) {
+        console.error(error)
+    }
     return result;
 }
 
