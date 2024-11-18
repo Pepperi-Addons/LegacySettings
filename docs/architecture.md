@@ -6,13 +6,6 @@
 - The addon append an iframe on the page and displays the page content from our Wsim (Backoffice old site) inside it.
 - The addon add the query "webAppIframe=true" to the url, the old backoffice know to read this query and to show only the relevant parts of the page (for example: without the page menu).
 - All of the logic & UI come from the Wsim backoffice system.
----
-
-## Infrastructure
-
-| Addon  | Usage  |
-| ---------------------------|------------------------ |
-| [LegacyActivitiesDashboard](https://github.com/Pepperi-Addons/LegacyDashboards/tree/main) | is the addon that display the Activities dashboard content from the Wsin on an iFrame in the Settings menu|
 
 ---
 
